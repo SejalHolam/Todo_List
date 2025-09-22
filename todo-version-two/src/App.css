@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+button{
+    margin: 8px;
+}
+
+.btn{
+  width: 80px;
+}
