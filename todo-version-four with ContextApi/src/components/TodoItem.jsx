@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import "./TodoItem.css";
-import { TodoItemsContext } from "../store/todo-items-store";
+import { TodoItemsContext } from "../store/TodoItemsContextProvider";
 
 const TodoItem = ({ buttonText }) => {
-  const { todos, deleteTodo, toggleComplete, editTodo } =
+  const { filteredTodos, deleteTodo, toggleComplete, editTodo } =
     useContext(TodoItemsContext);
 
   const [editId, setEditId] = useState(null);
@@ -26,7 +26,7 @@ const TodoItem = ({ buttonText }) => {
 
   return (
     <div className="container">
-      {todos.map((item) => (
+      {filteredTodos.map((item) => (
         <div className="todo-row" key={item.id}>
           <input
             type="checkbox"
