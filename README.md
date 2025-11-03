@@ -74,6 +74,37 @@ The Context API centralizes all todo-related logic (adding, editing, deleting, f
 - Consumer Access: Components (AddTodo, TodoItem, WelcomeMessage) use useContext() to directly access data and functions
 - Optional Refactor: Logic can be extracted into a reusable TodoProvider component for larger projects
 
+## Version 5 – useReducer Integration
+This version refactors the app’s global state management to use the useReducer hook instead of useState. The goal is to centralize all state updates through dispatch actions, making state management more predictable and easier to maintain as the app grows.
+
+### Features
+- All todo state and logic are now managed via useReducer
+- Actions handle adding, deleting, editing, completing, and filtering todos
+- Reducer ensures immutable updates and automatic sorting by due date
+- Maintains all Version 4 functionality:
+  Add, edit, delete todos
+  Toggle completion
+  Filter by All / Active / Completed
+  Sort by due date
+- Cleaner code with a single source of truth for state transitions
+
+### Functional Enhancements
+- Centralized State Updates
+  All changes to todos and filter are done via dispatch({ type, payload })
+  Reduces risk of inconsistent state updates compared to multiple useState calls
+
+- Reducer Actions
+  ADD_TODO → Adds a new todo and sorts the list
+  DELETE_TODO → Removes a todo by ID
+  TOGGLE_TODO → Marks a todo as completed/uncompleted
+  EDIT_TODO → Updates todo text and due date
+  SET_FILTER → Updates current filter for todo display
+
+- Simpler Context Provider
+  Provider only exposes state and dispatch-driven functions
+  Components no longer need to handle state logic internally
+  
+
 ## Tech Stack
 
 - React (Functional Components + Hooks)
