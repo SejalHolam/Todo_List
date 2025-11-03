@@ -1,0 +1,22 @@
+/* AddTodo.css */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    margin-top: 5px;
+}
+
+.add-todo-container {
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.add-todo-container input[type="text"],
+.add-todo-container input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  margin: 4px 0;
+}
