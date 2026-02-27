@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import "./TodoItem.css";
-import { TodoItemsContext } from "../store/TodoItemsContextProvider";
+import { useTodoItems} from "../store/TodoItemsContextProvider";
 
 const TodoItem = ({ buttonText }) => {
   const { filteredTodos, deleteTodo, toggleComplete, editTodo } =
-    useContext(TodoItemsContext);
+    useTodoItems();
 
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");

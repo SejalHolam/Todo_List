@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import "./WelcomeMessage.css";
-import { TodoItemsContext } from "../store/TodoItemsContextProvider";
+import {useTodoItems } from "../store/TodoItemsContextProvider";
 
 const WelcomeMessage = () => {
-  const { todos } = useContext(TodoItemsContext);
+  const { todos } = useTodoItems();
 
   return todos.length === 0 && <p className="welcome">Enjoy Your Day</p>;
 };

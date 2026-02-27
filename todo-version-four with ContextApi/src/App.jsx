@@ -3,12 +3,10 @@ import AddTodo from "./components/AddTodo";
 import TodoItem from "./components/TodoItem";
 import WelcomeMessage from "./components/WelcomeMessage";
 import "./App.css";
-import { useContext } from "react";
-import { TodoItemsContext } from "./store/TodoItemsContextProvider";
-import { TodoItemsContextProvider } from "./store/TodoItemsContextProvider";
+import { TodoItemsContextProvider, useTodoItems } from "./store/TodoItemsContextProvider";
 
 function FilterButtons() {
-  const { filter, setFilter } = useContext(TodoItemsContext);
+  const { filter, setFilter } = useTodoItems();
 
   return (
     <div className="container text-center my-3">

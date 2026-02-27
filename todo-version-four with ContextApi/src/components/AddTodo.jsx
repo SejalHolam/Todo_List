@@ -1,10 +1,10 @@
 import React from "react";
 import "./AddTodo.css";
-import { useState, useContext } from "react";
-import { TodoItemsContext } from "../store/TodoItemsContextProvider";
+import { useState} from "react";
+import { useTodoItems } from "../store/TodoItemsContextProvider";
 
 const AddTodo = ({ buttonText }) => {
-  const { addTodo } = useContext(TodoItemsContext);
+  const { addTodo } = useTodoItems();
   const [item, setItem] = useState("");
   const [dueDate, setDueDate] = useState("");
 

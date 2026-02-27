@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { createContext } from "react";
 
 export const TodoItemsContext = createContext();
 
 export const TodoItemsContextProvider = ({ children }) => {
-  const [todos, setTodos] = useState([]);
+  const getInitialTodos = () => {
+    const storedTodos = localStorage.getItem("todos");
+    return storedTodos ? JSON.parse(storedTodos) : [];
+  };
+
+  const [todos, setTodos] = useState(getInitialTodos);
 
   const [filter, setFilter] = useState("all"); // all, active, completed
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (newTodo) => {
     const updatedTodoList = [...todos, newTodo];
@@ -21,7 +30,7 @@ export const TodoItemsContextProvider = ({ children }) => {
 
   const toggleComplete = (id) => {
     const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
     );
     setTodos(updatedTodos);
   };
@@ -30,7 +39,7 @@ export const TodoItemsContextProvider = ({ children }) => {
     const updatedTodos = todos.map((todo) =>
       todo.id === id
         ? { ...todo, itemName: newName, dueDate: newDueDate }
-        : todo
+        : todo,
     );
     updatedTodos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
     setTodos(updatedTodos);
@@ -58,4 +67,8 @@ export const TodoItemsContextProvider = ({ children }) => {
       {children}
     </TodoItemsContext.Provider>
   );
+};
+
+export const useTodoItems = () => {
+  return useContext(TodoItemsContext);
 };
